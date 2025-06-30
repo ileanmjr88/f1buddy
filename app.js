@@ -9,7 +9,7 @@ import {
   verifyKeyMiddleware,
 } from "discord-interactions";
 
-import { DiscordRequest } from "./utils.js";
+import { DiscordRequest } from "./src/utils.js";
 
 // Create an express app
 const app = express();
@@ -41,7 +41,7 @@ app.post("/interactions", verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
           components: [
             {
               type: MessageComponentTypes.TEXT_DISPLAY,
-              content: 'f1buddy here! 🤖'
+              content: 'f1buddy here! 🏎️ 🤖'
             },
           ],
         },
@@ -49,7 +49,7 @@ app.post("/interactions", verifyKeyMiddleware(process.env.PUBLIC_KEY), async fun
     }
   }
 
-  
+
 })
 
 
