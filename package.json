@@ -1,0 +1,34 @@
+{
+  "name": "f1buddy",
+  "version": "1.0.0",
+  "description": "Discord bot to get F1 timing tables",
+  "main": "app.js",
+  "type": "module",
+  "engines": {
+    "node": ">=18.x"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "register": "node commands.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ileanmjr88/f1buddy.git"
+  },
+  "author": "Ilean Monterrubio Jr",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ileanmjr88/f1buddy/issues"
+  },
+  "homepage": "https://github.com/ileanmjr88/f1buddy#readme",
+  "dependencies": {
+    "@f1api/sdk": "^1.1.0",
+    "discord-interactions": "^4.3.0",
+    "dotenv": "^17.0.0",
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
