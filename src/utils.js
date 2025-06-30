@@ -47,17 +47,42 @@ export function capitalizeFirst(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-export function toMarkdownTable(data, column, headers) {
+export function toMarkdownTable(data, columns, headers) {
   if (!Array.isArray(data) || data.length === 0) return "No data available.";
 
-  // Header Row
-  let md = `| ${headers.join(" | ")} | \n`;
-  // Seperator row
-  md += `| ${headers.map(() => "---").join(" | ")} |\n`;
+  // Calculate max width for each column
+  const colWidths = columns.map((col, i) =>
+    Math.max(
+      headers[i].length,
+      ...data.map((row) => String(row[col] ?? "").length)
+    )
+  );
 
-  // Data rows
+  // Helper to pad each cell
+  const pad = (str, len) => String(str).padEnd(len, " ");
+
+  // Build header and separator
+  let lines = [];
+  lines.push(
+    headers.map((h, i) => pad(h, colWidths[i])).join(" | ")
+  );
+  lines.push(
+    colWidths.map((w) => "-".repeat(w)).join("-|-")
+  );
+
+  // Build rows
   for (const row of data) {
-    md += `| ${column.map((col) => row[col] ?? "").join(" | ")} |\n`;
+    lines.push(
+      columns.map((col, i) => pad(row[col] ?? "", colWidths[i])).join(" | ")
+    );
   }
-  return md;
+
+  // Wrap in code block
+  return "```\n" + lines.join("\n") + "\n```";
+}
+
+export function toMarkdownTableHeader(headers){
+  if (!Array.isArray(headers) || headers.length < 3) return "";
+  const [session, date, raceName] = headers;
+  return `# ${raceName}  \n## ${session} | ${date} \n`;
 }

@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "node app.js",
-    "register": "node commands.js",
+    "register": "node src/commands.js",
     "dev": "nodemon app.js"
   },
   "repository": {
